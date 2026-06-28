@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>City of Albuquerque — Official City Website</title>
+  <meta name="description" content="The official website of the City of Albuquerque. Find services, pay bills, report issues, explore things to do, and connect with city government." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    :root {
+      /* IBM Carbon-inspired palette */
+      --blue-60: #0f62fe;
+      --blue-70: #0043ce;
+      --blue-80: #002d9c;
+      --blue-10: #edf5ff;
+
+      --gray-100: #161616;
+      --gray-90: #262626;
+      --gray-80: #393939;
+      --gray-70: #525252;
+      --gray-60: #6f6f6f;
+      --gray-50: #8d8d8d;
+      --gray-30: #c6c6c6;
+      --gray-20: #e0e0e0;
+      --gray-10: #f4f4f4;
+      --gray-10-hover: #e8e8e8;
+
+      --red-60: #da1e28;
+      --green-50: #24a148;
+
+      --color-bg: #ffffff;
+      --color-bg-alt: var(--gray-10);
+      --color-text: var(--gray-100);
+      --color-text-secondary: var(--gray-70);
+      --color-accent: var(--blue-60);
+      --color-accent-hover: var(--blue-70);
+      --color-border: var(--gray-30);
+      --color-surface: var(--gray-10);
+
+      --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'IBM Plex Mono', Menlo, Courier, monospace;
+    }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.5;
+      font-size: 16px;
+    }
+    a { color: var(--color-accent); text-decoration: none; transition: color 0.15s; }
+    a:hover { color: var(--color-accent-hover); text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+    :focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    /* ========== UTILITY ========== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .container-wide {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section {
+      padding: 64px 0;
+    }
+    .section-alt {
+      background: var(--color-bg-alt);
+    }
+    .section-dark {
+      background: var(--gray-100);
+      color: var(--gray-10);
+    }
+    .section-dark h2,
+    .section-dark h3 { color: #ffffff; }
+    .section-dark .text-secondary { color: var(--gray-30); }
+
+    .label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+    .text-secondary { color: var(--color-text-secondary); }
+
+    .heading-xl {
+      font-family: var(--font-sans);
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 300;
+      line-height: 1.17;
+      letter-spacing: -0.01em;
+      color: var(--gray-100);
+    }
+    .heading-lg {
+      font-family: var(--font-sans);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.19;
+      letter-spacing: -0.01em;
+      color: var(--gray-100);
+    }
+    .heading-md {
+      font-family: var(--font-sans);
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      font-weight: 600;
+      line-height: 1.33;
+      color: var(--gray-100);
+    }
+
+    /* Buttons — Carbon style: sharp, 0-radius */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 0;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      line-height: 1;
+      height: 48px;
+    }
+    .btn-primary {
+      background: var(--color-accent);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--color-accent-hover);
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background: var(--gray-80);
+      color: #ffffff;
+    }
+    .btn-secondary:hover {
+      background: var(--gray-70);
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent);
+    }
+    .btn-outline:hover {
+      background: var(--blue-10);
+      text-decoration: none;
+    }
+    .btn-white {
+      background: #ffffff;
+      color: var(--gray-100);
+    }
+    .btn-white:hover {
+      background: var(--gray-10);
+      text-decoration: none;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-accent);
+      padding: 14px 16px;
+      height: 40px;
+    }
+    .btn-ghost:hover {
+      background: var(--gray-10);
+      text-decoration: none;
+    }
+
+    /* ========== ANNOUNCEMENT ========== */
+    .announcement {
+      background: var(--blue-60);
+      color: #fff;
+      text-align: center;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .announcement a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .announcement strong { font-weight: 600; }
+
+    /* ========== HEADER ========== */
+    .top-bar {
+      background: var(--gray-100);
+      color: var(--gray-30);
+      font-size: 12px;
+      padding: 6px 0;
+    }
+    .top-bar-inner {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+    .top-bar a {
+      color: var(--gray-30);
+      font-size: 12px;
+    }
+    .top-bar a:hover { color: #fff; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-20);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gray-100);
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    .logo:hover { text-decoration: none; color: var(--gray-100); }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .logo span {
+      color: var(--gray-60);
+      font-weight: 400;
+      font-size: 13px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray-100);
+      padding: 8px 14px;
+      border-radius: 0;
+      position: relative;
+    }
+    .nav-links a:hover {
+      background: var(--gray-10);
+      text-decoration: none;
+    }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--color-accent);
+    }
+    .nav-search-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--gray-70);
+    }
+    .nav-search-btn:hover { color: var(--gray-100); }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      width: 40px;
+      height: 40px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      font-size: 24px;
+      color: var(--gray-100);
+    }
+    .mobile-toggle:hover { background: var(--gray-10); }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, #f4f4f4 0%, #ffffff 50%, #edf5ff 100%);
+      padding: 80px 0 64px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(15,98,254,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 300;
+      line-height: 1.17;
+      color: var(--gray-100);
+      margin-bottom: 16px;
+    }
+    .hero h1 strong { font-weight: 600; color: var(--color-accent); }
+    .hero p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--gray-70);
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Hero Quick Links */
+    .hero-quicklinks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .quicklink-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: #ffffff;
+      border: 1px solid var(--gray-20);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-100);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .quicklink-card:hover {
+      background: var(--blue-10);
+      border-color: var(--color-accent);
+      text-decoration: none;
+    }
+    .quicklink-card .ql-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--gray-10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ========== SEARCH BANNER ========== */
+    .search-banner {
+      background: var(--gray-100);
+      padding: 32px 0;
+    }
+    .search-banner-inner {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .search-banner label {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .search-input-group {
+      flex: 1;
+      display: flex;
+      min-width: 280px;
+    }
+    .search-input-group input {
+      flex: 1;
+      padding: 0 16px;
+      height: 48px;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--gray-100);
+      background: var(--gray-10);
+      outline: none;
+    }
+    .search-input-group input:focus {
+      outline: 2px solid var(--color-accent);
+    }
+    .search-input-group button {
+      width: 48px;
+      height: 48px;
+      background: var(--color-accent);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .search-input-group button:hover { background: var(--color-accent-hover); }
+
+    /* ========== SERVICE GRID ========== */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--gray-20);
+      border: 1px solid var(--gray-20);
+    }
+    .service-card {
+      background: #ffffff;
+      padding: 28px 24px;
+      transition: all 0.15s;
+    }
+    .service-card:hover {
+      background: var(--blue-10);
+    }
+    .service-card .s-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .service-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--gray-100);
+    }
+    .service-card p {
+      font-size: 13px;
+      color: var(--gray-70);
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+    .service-card .s-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-accent);
+    }
+
+    /* ========== THINGS TO DO ========== */
+    .things-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--gray-20);
+      border: 1px solid var(--gray-20);
+    }
+    .thing-card {
+      background: #ffffff;
+      padding: 24px;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .thing-card:hover {
+      background: var(--gray-10);
+    }
+    .thing-card .t-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gray-10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .thing-card h4 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--gray-100);
+    }
+    .thing-card p {
+      font-size: 12px;
+      color: var(--gray-60);
+      margin-top: 2px;
+    }
+
+    /* ========== NEWS ========== */
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--gray-20);
+      border: 1px solid var(--gray-20);
+    }
+    .news-card {
+      background: #ffffff;
+      padding: 28px 24px;
+      transition: all 0.15s;
+    }
+    .news-card:hover { background: var(--gray-10); }
+    .news-card .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 3px 8px;
+      background: var(--blue-10);
+      color: var(--color-accent);
+      margin-bottom: 10px;
+    }
+    .news-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      color: var(--gray-100);
+    }
+    .news-card p {
+      font-size: 13px;
+      color: var(--gray-70);
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+    }
+    .news-card .date {
+      font-size: 12px;
+      color: var(--gray-50);
+      margin-top: 12px;
+      display: block;
+    }
+
+    /* ========== CITY HIGHLIGHTS ========== */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--gray-80);
+      border: 1px solid var(--gray-80);
+    }
+    .highlight-card {
+      background: var(--gray-100);
+      padding: 28px 24px;
+      transition: all 0.15s;
+    }
+    .highlight-card:hover {
+      background: var(--gray-90);
+    }
+    .highlight-card .h-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .highlight-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .highlight-card p {
+      font-size: 13px;
+      color: var(--gray-30);
+      line-height: 1.5;
+    }
+
+    /* ========== 311 / CTA ========== */
+    .cta-311 {
+      background: var(--color-accent);
+      color: #ffffff;
+      padding: 56px 0;
+    }
+    .cta-311 h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 300;
+      line-height: 1.25;
+    }
+    .cta-311 strong { font-weight: 600; }
+    .cta-311 p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      margin: 12px 0 24px;
+      max-width: 560px;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--gray-100);
+      color: var(--gray-30);
+      padding: 48px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    footer h4 {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    footer a {
+      color: var(--gray-30);
+      font-size: 13px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    footer a:hover { color: #ffffff; }
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 10px;
+      color: var(--gray-50);
+      max-width: 300px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      margin: 0;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.12); }
+    .footer-bottom {
+      border-top: 1px solid var(--gray-80);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--gray-50);
+    }
+    .footer-bottom a {
+      display: inline;
+      font-size: 12px;
+      color: var(--gray-50);
+      margin: 0 0 0 14px;
+    }
+    .footer-bottom a:hover { color: #fff; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        padding: 16px;
+        border-bottom: 1px solid var(--gray-20);
+        gap: 4px;
+        align-items: stretch;
+      }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero { padding: 48px 0; }
+      .hero-quicklinks { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+      .things-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .section { padding: 48px 0; }
+      .section-header { margin-bottom: 24px; }
+      .cta-311 { padding: 40px 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .search-banner-inner { flex-direction: column; align-items: stretch; }
+    }
+    @media (max-width: 480px) {
+      .top-bar { display: none; }
+      .search-input-group { min-width: 100%; }
+      .highlights-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate > * {
+      animation: fadeUp 0.4s ease forwards;
+      opacity: 0;
+    }
+    .animate > *:nth-child(1) { animation-delay: 0.05s; }
+    .animate > *:nth-child(2) { animation-delay: 0.1s; }
+    .animate > *:nth-child(3) { animation-delay: 0.15s; }
+    .animate > *:nth-child(4) { animation-delay: 0.2s; }
+    .animate > *:nth-child(5) { animation-delay: 0.25s; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 8px;
+      padding: 12px 20px;
+      background: var(--gray-100);
+      color: #fff;
+      z-index: 1000;
+      font-weight: 600;
+      border-radius: 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <a href="#">Employee Portal</a>
+      <a href="#">Translate</a>
+      <a href="#">Language</a>
+    </div>
+  </div>
+
+  <!-- Announcement -->
+  <div class="announcement" role="alert">
+    🔥 <strong>Heat Advisory:</strong> Cooling centers are open across the city. <a href="#">Find a location near you →</a>
+  </div>
+
+  <!-- Header -->
+  <header role="banner">
+    <div class="container nav-inner">
+      <a href="/" class="logo" aria-label="City of Albuquerque homepage">
+        <div class="logo-icon">ABQ</div>
+        City of Albuquerque <span>· cabq.gov</span>
+      </a>
+      <nav class="nav-links" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="#" class="active">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Government</a>
+        <a href="#">Business</a>
+        <a href="#">Things To Do</a>
+        <a href="#">How Do I…</a>
+        <a href="#">Contact</a>
+        <button class="nav-search-btn" aria-label="Search">⌕</button>
+      </nav>
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleNav()">≡</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Welcome to Albuquerque">
+    <div class="container-wide">
+      <div class="hero-grid">
+        <div class="animate">
+          <div class="label">Official Website</div>
+          <h1>Welcome to <strong>Albuquerque</strong>.</h1>
+          <p>Your gateway to city services, government, events, and everything that makes the Duke City a great place to live, work, and visit.</p>
+          <div class="hero-actions">
+            <a href="#" class="btn btn-primary">Pay a Bill</a>
+            <a href="#" class="btn btn-outline">Report an Issue</a>
+            <a href="#" class="btn btn-ghost">Contact 311 →</a>
+          </div>
+        </div>
+        <div class="animate">
+          <div class="label">Quick Links</div>
+          <div class="hero-quicklinks">
+            <a href="#" class="quicklink-card">
+              <span class="ql-icon">🏠</span> Building Permits
+            </a>
+            <a href="#" class="quicklink-card">
+              <span class="ql-icon">🗑️</span> Trash & Recycling
+            </a>
+            <a href="#" class="quicklink-card">
+              <span class="ql-icon">📄</span> Business Licenses
+            </a>
+            <a href="#" class="quicklink-card">
+              <span class="ql-icon">🚌</span> Bus Routes
+            </a>
+            <a href="#" class="quicklink-card">
+              <span class="ql-icon">🚓</span> Police Reports
+            </a>
+            <a href="#" class="quicklink-card">
+              <span class="ql-icon">🌳</span> Parks & Rec
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Banner -->
+  <div class="search-banner">
+    <div class="container">
+      <div class="search-banner-inner">
+        <label for="siteSearch">HOW CAN WE HELP YOU?</label>
+        <div class="search-input-group">
+          <input type="text" id="siteSearch" placeholder="Search services, departments, events…" />
+          <button type="submit" aria-label="Search">→</button>
+        </div>
+        <span style="color:var(--gray-50);font-size:13px;white-space:nowrap;">or call <strong style="color:#fff;">311</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Services -->
+  <section class="section" aria-labelledby="services-heading" id="main">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <span class="label">City Services</span>
+          <h2 class="heading-lg">Popular services.</h2>
+        </div>
+        <a href="#" class="btn btn-ghost">All Services →</a>
+      </div>
+      <div class="service-grid reveal">
+        <div class="service-card">
+          <span class="s-icon" aria-hidden="true">🪪</span>
+          <h3>Business Licenses</h3>
+          <p>Apply for or renew a business license, cannabis retail permit, or short-term rental registration.</p>
+          <span class="s-link">Learn more →</span>
+        </div>
+        <div class="service-card">
+          <span class="s-icon" aria-hidden="true">🏗️</span>
+          <h3>Building Permits</h3>
+          <p>Residential and commercial permits, inspections, plan review, and contractor licensing.</p>
+          <span class="s-link">Apply →</span>
+        </div>
+        <div class="service-card">
+          <span class="s-icon" aria-hidden="true">🗑️</span>
+          <h3>Trash & Recycling</h3>
+          <p>Collection schedules, bulky item pickup, recycling guidelines, and dumpster permits.</p>
+          <span class="s-link">Check schedule →</span>
+        </div>
+        <div class="service-card">
+          <span class="s-icon" aria-hidden="true">💰</span>
+          <h3>Pay a Bill</h3>
+          <p>Pay parking tickets, property taxes, utility bills, municipal citations, and more online.</p>
+          <span class="s-link">Pay now →</span>
+        </div>
+        <div class="service-card">
+          <span class="s-icon" aria-hidden="true">🚌</span>
+          <h3>Transit & Bus</h3>
+          <p>Bus routes, schedules, trip planner, ABQ RIDE passes, and senior transportation services.</p>
+          <span class="s-link">Plan your trip →</span>
+        </div>
+        <div class="service-card">
+          <span class="s-icon" aria-hidden="true">🐾</span>
+          <h3>Adopt a Pet</h3>
+          <p>View adoptable animals, licensing, lost & found pets, and volunteer at the city shelter.</p>
+          <span class="s-link">Find a pet →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- City Highlights (Dark) -->
+  <section class="section section-dark" aria-labelledby="highlights-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <span class="label" style="color:var(--blue-10);">City Initiatives</span>
+          <h2 class="heading-lg" style="color:#fff;">Building a better Albuquerque.</h2>
+        </div>
+      </div>
+      <div class="highlights-grid reveal">
+        <div class="highlight-card">
+          <span class="h-icon" aria-hidden="true">🏘️</span>
+          <h3>One Albuquerque</h3>
+          <p>An inclusive vision for equity, economic opportunity, and community wellbeing for every resident of the Duke City.</p>
+        </div>
+        <div class="highlight-card">
+          <span class="h-icon" aria-hidden="true">🌿</span>
+          <h3>Sustainability</h3>
+          <p>Clean energy, water conservation, urban forestry, and climate resilience initiatives for a greener Albuquerque.</p>
+        </div>
+        <div class="highlight-card">
+          <span class="h-icon" aria-hidden="true">📈</span>
+          <h3>Economic Development</h3>
+          <p>Business incentives, workforce development, ABQ Film Office, and metropolitan redevelopment projects.</p>
+        </div>
+        <div class="highlight-card">
+          <span class="h-icon" aria-hidden="true">👮</span>
+          <h3>Community Safety</h3>
+          <p>Albuquerque Community Safety (ACS), police area commands, fire prevention, and emergency preparedness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Things To Do -->
+  <section class="section section-alt" aria-labelledby="things-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <span class="label">Things To Do</span>
+          <h2 class="heading-lg">Explore Albuquerque.</h2>
+        </div>
+        <a href="#" class="btn btn-ghost">ABQToDo →</a>
+      </div>
+      <div class="things-grid reveal">
+        <div class="thing-card">
+          <span class="t-icon">🎨</span>
+          <div>
+            <h4>ABQ BioPark</h4>
+            <p>Zoo, Aquarium, Botanic Garden</p>
+          </div>
+        </div>
+        <div class="thing-card">
+          <span class="t-icon">🎈</span>
+          <div>
+            <h4>Balloon Museum</h4>
+            <p>Anderson-Abruzzo International</p>
+          </div>
+        </div>
+        <div class="thing-card">
+          <span class="t-icon">🌵</span>
+          <div>
+            <h4>Open Space & Parks</h4>
+            <p>290+ parks across the city</p>
+          </div>
+        </div>
+        <div class="thing-card">
+          <span class="t-icon">🏊</span>
+          <div>
+            <h4>Pools & Aquatics</h4>
+            <p>Swimming, lessons, and programs</p>
+          </div>
+        </div>
+        <div class="thing-card">
+          <span class="t-icon">📚</span>
+          <div>
+            <h4>Public Library</h4>
+            <p>18 branches, e-books, programs</p>
+          </div>
+        </div>
+        <div class="thing-card">
+          <span class="t-icon">🏟️</span>
+          <div>
+            <h4>Sports & Recreation</h4>
+            <p>Leagues, classes, and facilities</p>
+          </div>
+        </div>
+        <div class="thing-card">
+          <span class="t-icon">🎭</span>
+          <div>
+            <h4>Special Events</h4>
+            <p>Festivals, concerts, and markets</p>
+          </div>
+        </div>
+        <div class="thing-card">
+          <span class="t-icon">🚲</span>
+          <div>
+            <h4>Trails & Biking</h4>
+            <p>Bosque Trail, bike routes, and more</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="section" aria-labelledby="news-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <span class="label">News</span>
+          <h2 class="heading-lg">Latest from the City.</h2>
+        </div>
+        <a href="#" class="btn btn-ghost">Newsroom →</a>
+      </div>
+      <div class="news-grid reveal">
+        <article class="news-card">
+          <span class="tag">Press Release</span>
+          <h3>City Launches New Affordable Housing Initiative in International District</h3>
+          <p>Mayor Keller announced a $15M investment for mixed-income housing development near the I-25/I-40 interchange.</p>
+          <span class="date">June 26, 2026</span>
+        </article>
+        <article class="news-card">
+          <span class="tag">Public Notice</span>
+          <h3>ABQ RIDE Route Changes Effective July 1</h3>
+          <p>Updated bus schedules and new express routes to Uptown and Mesa del Sol. Check the new route maps online.</p>
+          <span class="date">June 24, 2026</span>
+        </article>
+        <article class="news-card">
+          <span class="tag">Community</span>
+          <h3>Cooling Centers Open Citywide Amid Heat Wave</h3>
+          <p>Extended hours at community centers, libraries, and senior centers. Free cold water and AC available.</p>
+          <span class="date">June 22, 2026</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 311 CTA -->
+  <section class="cta-311" aria-labelledby="cta-heading">
+    <div class="container">
+      <div class="reveal" style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+        <div>
+          <h2 id="cta-heading">Need help? <strong>Call 311</strong> or <strong>(505) 768-2000</strong></h2>
+          <p>The 311 Community Contact Center is your one-call gateway to all City of Albuquerque services, information, and support.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="#" class="btn btn-white">Report an Issue</a>
+            <a href="#" class="btn btn-ghost" style="color:#fff;border:1px solid rgba(255,255,255,0.3);">Find a Department</a>
+          </div>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,0.1);padding:24px 32px;flex-shrink:0;">
+          <div style="font-size:36px;font-weight:200;line-height:1;">311</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;">24/7 City Services</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:#fff;">
+            <span style="font-size:18px;">🏛️</span> City of Albuquerque
+          </div>
+          <p>One Civic Plaza NW, Albuquerque, NM 87102 · (505) 768-3000</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Instagram">◻</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div>
+          <h4>Departments</h4>
+          <a href="#">Mayor's Office</a>
+          <a href="#">City Council</a>
+          <a href="#">Police</a>
+          <a href="#">Fire & Rescue</a>
+          <a href="#">Parks & Rec</a>
+          <a href="#">Public Works</a>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="#">Pay a Bill</a>
+          <a href="#">Jobs</a>
+          <a href="#">Permits</a>
+          <a href="#">City Calendar</a>
+          <a href="#">ABQ311</a>
+          <a href="#">Open Data</a>
+        </div>
+        <div>
+          <h4>Help & Support</h4>
+          <a href="#">Contact Us</a>
+          <a href="#">FAQ</a>
+          <a href="#">Americans with Disabilities Act</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Site Map</a>
+          <a href="#">Employee Portal</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 City of Albuquerque. All rights reserved.</span>
+        <div>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">ADA</a>
+          <a href="#">Translate</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const nav = document.getElementById('mainNav');
+      const btn = document.querySelector('.mobile-toggle');
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mainNav').classList.remove('open');
+        document.querySelector('.mobile-toggle').setAttribute('aria-expanded', 'false');
+      });
+    });
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
